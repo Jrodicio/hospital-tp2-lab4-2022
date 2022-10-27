@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="w-100 m-auto text-center">
+    <img class="mb-4 heartbeat" src="../../../../../assets/images/especialista.png" width="180" height="180">
+    <h1 class="h3 mb-3 fw-normal">Complete los datos</h1>
+  </div>
+
+  <app-alta-usuario (formModEvent)="onFormMod($event)" (fileUploadEvent)="onUpload($event)"></app-alta-usuario>
+
+  <form [formGroup]="especialistaForm" (ngSubmit)="registrarEspecialista()">
+    <div class="row">
+      <div class="col-lg-6">
+        <ul>
+          <h5>Especialidades:</h5>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" name="traumatologia" formControlName="traumatologia" [class.is-invalid]="fm['traumatologia'].invalid">
+            <label class="form-check-label" for="traumatologia">Traumatología</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" name="otorrinolaringologia" formControlName="otorrinolaringologia" [class.is-invalid]="fm['otorrinolaringologia'].invalid">
+            <label class="form-check-label" for="otorrinolaringologia">Otorrinolaringología</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" name="oftalmologia" formControlName="oftalmologia" [class.is-invalid]="fm['oftalmologia'].invalid">
+            <label class="form-check-label" for="oftalmologia">Oftalmología</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" name="cardiologia" formControlName="cardiologia" [class.is-invalid]="fm['cardiologia'].invalid">
+            <label class="form-check-label" for="cardiologia">Cardiología</label>
+          </div>
+        </ul>
+      </div>
+      <div class="col-lg-6">
+        <ul>
+          <h5>Otra especialidad:</h5>
+          <input type="text" class="rounded form-control" formControlName="otraEspecialidad" [class.is-invalid]="fm['otraEspecialidad'].invalid">
+        </ul>
+      </div>
+    </div>
+    <span *ngIf="especialistaCargando" class="spinner-border spinner-border-sm"></span>
+    <div  class="alert alert-danger" role="alert" [style.opacity]="errorRegistro.opacity">{{errorRegistro.message}}</div>
+    <div class="w-100 m-auto text-center">
+      <button class="btn btn-success btn-lg">Registrar</button>
+    </div>
+    <br>
+  </form>
+</div>

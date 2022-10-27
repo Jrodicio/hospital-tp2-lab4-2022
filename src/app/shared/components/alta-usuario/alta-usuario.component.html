@@ -1,0 +1,62 @@
+<form [formGroup]="altaForm">
+  <div class="row">
+    <div class="col-lg-6">
+      <ul>
+        <h5>Nombre</h5>
+        <input type="text" class="rounded form-control" formControlName="nombre" [class.is-invalid]="fm['nombre'].invalid && fm['nombre'].dirty">
+      </ul>
+    </div>
+    <div class="col-lg-6">
+      <ul>
+        <h5>Apellido</h5>
+        <input type="text" class="rounded form-control" formControlName="apellido" [class.is-invalid]="fm['apellido'].invalid && fm['apellido'].dirty">
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <ul>
+        <h5>Edad</h5>
+        <input type="number" class="rounded form-control" formControlName="edad" [class.is-invalid]="fm['edad'].invalid && fm['edad'].dirty">
+      </ul>
+    </div>
+    <div class="col-lg-6">
+      <ul>
+        <h5>DNI</h5>
+        <input type="number" class="rounded form-control" formControlName="DNI" [class.is-invalid]="fm['DNI'].invalid && fm['DNI'].dirty">
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <ul>
+        <h5>Correo</h5>
+        <input type="email" class="rounded form-control" formControlName="correo" [class.is-invalid]="fm['correo'].invalid && fm['correo'].dirty">
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <ul>
+        <h5>Contraseña</h5>
+        <input type="password" class="rounded form-control" formControlName="contraseña" [class.is-invalid]="fm['contraseña'].invalid && fm['contraseña'].dirty">
+      </ul>
+    </div>
+    <div class="col-lg-6">
+      <ul>
+        <h5>Confirme su contraseña</h5>
+        <input type="password" class="rounded form-control" formControlName="contraseñaConfirm" [class.is-invalid]="fm['contraseñaConfirm'].invalid && fm['contraseñaConfirm'].dirty">
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <ul>
+        <h5>Imagen de perfil:</h5>
+        <input type="file" class="rounded form-control" formControlName="imagenPerfil" [class.is-invalid]="fm['imagenPerfil'].invalid && fm['imagenPerfil'].dirty" (change)="fileUploadEmmiter($event)">
+      </ul>
+    </div>
+  </div>
+</form>

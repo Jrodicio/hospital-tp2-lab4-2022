@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "hospital-jrodicio": {
+      "hosting": {
+        "TP-Hospital-JRodicio": [
+          "hospital-jrodicio"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "hospital-jrodicio"
+  }
+}

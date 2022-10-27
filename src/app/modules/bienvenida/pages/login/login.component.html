@@ -1,0 +1,23 @@
+<main class="form-signin w-100 m-auto text-center slide-in-left">
+  <form [formGroup]="loginForm" (ngSubmit)="loguearUsuario()">
+    <img class="mb-4 heartbeat" src="../../../../../assets/images/logo.png" width="180" height="180">
+    <h1 class="h3 mb-3 fw-normal">Ingrese sus datos</h1>
+
+    <div class="form-floating">
+      <input type="email" class="form-control" id="floatingInput" [class.is-invalid]="fm['correo'].invalid && fm['correo'].dirty" placeholder="Correo" [disabled]="estaCargando" formControlName="correo">
+      <label for="floatingInput">Correo</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" [class.is-invalid]="fm['contrasena'].invalid && fm['contrasena'].dirty" placeholder="Contraseña" [disabled]="estaCargando" formControlName="contrasena">
+      <label for="floatingPassword is-invalid">Contraseña</label>
+    </div>
+    <span *ngIf="estaCargando" class="spinner-border spinner-border-sm"></span>
+
+    <div  class="alert alert-danger" role="alert" [style.opacity]="errorLogin.opacity">{{errorLogin.message}}</div>
+
+    <button class="w-100 btn btn-lg btn-success"  type="submit" [disabled]="estaCargando">Iniciar sesión</button>
+    <button class="w-100 btn btn-lg btn-dark" routerLink="" [disabled]="estaCargando">Regresar</button>
+  </form>
+</main>
+
+<app-lista-usuarios class="lista-usuarios" (usuarioSelected)="onUsuarioSelected($event)"></app-lista-usuarios>

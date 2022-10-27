@@ -1,0 +1,19 @@
+.container{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  img{
+    width: 90%;
+    height: 90%
+  }
+  .logo{
+    position: relative;
+    img{
+      width: 100%;
+    }
+  }
+}
+
+button .btn-light{
+  height: 300px;
+  width: 300px;
+}
