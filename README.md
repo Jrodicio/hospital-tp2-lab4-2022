@@ -65,4 +65,4 @@ La web se encuentra hosteada en firebase, para poder acceder a la √∫ltima versi√
 # :information_source: Construido con:
 * [Angular](https://angular.io/)
 * [Bootstrap](https://getbootstrap.com/)
-* [Firebase] (https://firebase.google.com/)
+* [Firebase](https://firebase.google.com/)
