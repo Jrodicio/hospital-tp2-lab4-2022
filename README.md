@@ -29,32 +29,32 @@ Página inicial donde cualquier usuario no identificado podrá indicar si quiere
 Permitirá acceder al sistema con una cuenta de usuario previamente registrada, validada y, en el caso de los especialistas, aprobada por un administrador.
 Posee un contenedor con botones para faciliar el acceso con usuarios de distintos perfiles del lado derecho.
 
-![Login](src/assets/prints/login.JPG "Formulario de login")
+![Login](src/assets/readme/login.JPG "Formulario de login")
 
 ## Registro de usuario
 
 Al momento de registrarnos desde el menú de bienvenida, nos van a solicitar indicar el tipo de cuenta que crearemos: Paciente o Especialista.
 Cada formulario tiene sus campos necesarios con distintas validaciones, todos los usuarios deberán comprobar su correo mediante el link enviado a su casilla personal. Tenga en cuenta que en el caso de un usuario Especialista se requerirá además, la aprobación de un administrador antes de realizar el inicio de sesión.
 
-![Registro](src/assets/prints/registro.gif "Formulario de registro")
+![Registro](src/assets/readme/registro.gif "Formulario de registro")
 
 ## Home
 
 Es la pantalla inicial donde cada usuario va a visualizar la barra de navegación superior con todos los accesos a los menús que pueda ingresar.
 
-![Home](src/assets/prints/home.JPG "Page home")
+![Home](src/assets/readme/home.JPG "Page home")
 
 ## Sección Usuarios
 
 Permitirá a los administradores visualizar a todos los usuarios registrados con sus datos, habilitar o deshabilitar a los especialistas y realizar el alta de nuevas cuentas de usuarios.
 
-![Usuarios](src/assets/prints/usuarios.gif "Sección´Usuarios")
+![Usuarios](src/assets/readme/usuarios.gif "Sección´Usuarios")
 
 ## Sección Turnos
 
 Permitirá a los administradores visualizar todos los turnos del sistema. Incluye filtros para seleccionar especialistas y especialidades. Podrá cancelar turnos siempre y cuando especifique algún motivo.
 
-![Turnos](src/assets/prints/turnos.gif "Sección Turnos")
+![Turnos](src/assets/readme/turnos.gif "Sección Turnos")
 
 # :information_source: Hosting
 
