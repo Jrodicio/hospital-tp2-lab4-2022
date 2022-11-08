@@ -1,5 +1,5 @@
 # Clínica Online
-
+![Bienvenida](src/assets/images/logo.png "Página de bienvenida")
 Sistema de gestión de turnos para nuestra Clinica Online con el que podrán gestionar e interactuar tanto profesionales prestadores de servicio como los pacientes que requieran cualquier tipo de atención brindado.
 
 
