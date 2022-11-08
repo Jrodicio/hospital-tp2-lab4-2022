@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-6">
+    <h6>Turno mañana</h6>
+    <p class="rounded form-control">De 8hs a 14hs</p>
+  </div>
+  <div class="col-6">
+    <h6>Turno tarde</h6>
+    <p class="rounded form-control">De 13hs a 19hs</p>
+  </div>
+</div>
+
+<table class="table" *ngIf="especialista.horario">
+  <thead>
+    <tr>
+      <th scope="col">Día</th>
+      <th scope="col">No laboral</th>
+      <th scope="col">Turno mañana</th>
+      <th scope="col">Turno tarde</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let dia of especialista.horario">
+      <th scope="row">{{dia.desc}}</th>
+      <td>
+        <button type="button" class="btn" [ngClass]="dia.na? 'btn-success btn-lg' : 'btn-dark'" (click)="actualizarHorario(dia.day, true, false, false)" [disabled]="usuarioLogin.uid != especialista.uid">
+          {{dia.na? 'X' : 'O'}}
+        </button>
+      </td>
+      <td>
+        <button type="button" class="btn" [ngClass]="dia.tm? 'btn-success btn-lg' : 'btn-dark'" (click)="actualizarHorario(dia.day, false, true, false)" [disabled]="usuarioLogin.uid != especialista.uid">
+          {{dia.tm? 'X' : 'O'}}
+        </button>
+      </td>
+      <td>
+        <button type="button" class="btn" [ngClass]="dia.tt? 'btn-success btn-lg' : 'btn-dark'" (click)="actualizarHorario(dia.day, false, false, true)" [disabled]="dia.desc == 'Sábado' || usuarioLogin.uid != especialista.uid">
+          {{dia.tt? 'X' : 'O'}}
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="my-3 text-center" *ngIf="cambiosSinguardar">
+  <button type="button" class="btn btn-primary" (click)="guardarCambios()">Guardar cambios</button>
+</div>

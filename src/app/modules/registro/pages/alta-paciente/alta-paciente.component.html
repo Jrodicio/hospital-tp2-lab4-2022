@@ -25,9 +25,16 @@
       </div>
     </div>
     <span *ngIf="pacienteCargando" class="spinner-border spinner-border-sm"></span>
-    <div  class="alert alert-danger" role="alert" [style.opacity]="errorRegistro.opacity">{{errorRegistro.message}}</div>
-    <div class="w-100 m-auto text-center">
-      <button class="btn btn-success btn-lg">Registrar</button>
+
+    <div class="w-100 m-auto text-center" [hidden]="registroRealizado">
+      <app-captcha (captchaEmitido)="onCaptchaEmitido($event)"></app-captcha>
+      <div  class="alert alert-danger" role="alert" [style.opacity]="errorRegistro.opacity">{{errorRegistro.message}}</div>
+      <button class="btn btn-success btn-lg btn-block">Registrar</button>
+      <button type="button" class="btn btn-danger btn-lg" routerLink="../">Cancelar</button>
+    </div>
+    <div class="w-100 m-auto text-center" [hidden]="!registroRealizado">
+      <div  class="alert alert-success" role="alert">Registro realizado, se estará enviando un correo a la casilla indicada</div>
+      <button type="button" class="btn btn-secondary btn-lg" routerLink="../">Regresar</button>
     </div>
     <br>
   </form>

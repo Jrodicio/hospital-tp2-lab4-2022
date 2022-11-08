@@ -1,0 +1,7 @@
+<div class="container">
+  <div class="w-100 m-auto text-center">
+    <div class="h3 mb-3 fw-normal">Deslizá hasta que se ponga verde</div>
+    <input type="range" [(ngModel)]="valorRange" [ngClass]="valorRange >= valueMin && valorRange <= valueMax ? 'green' : 'red'" (change)="emitirCaptcha()">
+  </div>
+</div>
+

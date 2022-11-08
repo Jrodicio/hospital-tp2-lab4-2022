@@ -10,7 +10,19 @@
         <button type="button" class="btn btn-primary" routerLink="/home">Home</button>
       </li>
       <li class="nav-item">
-        <button type="button" class="btn btn-light" routerLink="/home/altas">Usuarios</button>
+        <button type="button" class="btn btn-light" routerLink="/home/usuarios" [hidden]="perfilUser != 'Administrador'">Usuarios</button>
+      </li>
+      <li class="nav-item">
+        <button type="button" class="btn btn-light" routerLink="/home/mis-turnos/{{perfilUser}}" [hidden]="perfilUser != 'Especialista' && perfilUser != 'Paciente'">Mis turnos</button>
+      </li>
+      <li class="nav-item">
+        <button type="button" class="btn btn-light" routerLink="/home/turnos" [hidden]="perfilUser != 'Administrador'">Turnos</button>
+      </li>
+      <li class="nav-item">
+        <button type="button" class="btn btn-light" routerLink="/home/solicitar-turno" [hidden]="perfilUser != 'Administrador' && perfilUser != 'Paciente'">Solicitar turno</button>
+      </li>
+      <li class="nav-item">
+        <button type="button" class="btn btn-light" routerLink="/home/mi-perfil">Mi perfil</button>
       </li>
       <li class="nav-item">
         <button type="button" class="btn btn-danger" (click)="logout()">Salir</button>

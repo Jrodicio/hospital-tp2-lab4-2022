@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="my-3" *ngIf="seleccionarPaciente && !turnoSolicitado">
+    <h5>Seleccioná un paciente</h5>
+    <app-listado-pacientes (pacienteSeleccionado)="onPacienteSeleccionado($event)" ></app-listado-pacientes>
+  </div>
+
+  <div class="my-3" *ngIf="paciente  && !turnoSolicitado">
+    <h5>Seleccioná una especialidad</h5>
+    <app-listado-especialidades (especialidadSeleccionada)="onEspecialidadSeleccionada($event)" [especialidad]="especialidadSeleccionada"></app-listado-especialidades>
+  </div>
+
+  <div *ngIf="especialidadSeleccionada !== '' && !turnoSolicitado" class="my-3">
+    <h5>Seleccioná un especialista</h5>
+    <app-listado-especialistas (especialistaSeleccionado)="onEspecialistaSeleccionado($event)" [especialidad]="especialidadSeleccionada" [especialista]="especialistaSeleccionado"></app-listado-especialistas>
+  </div>
+
+  <div *ngIf="especialistaSeleccionado && !turnoSolicitado" class="my-3">
+    <h5>Turnos disponibles</h5>
+    <app-listado-turnos-disponibles (turnoSeleccionado)="onTurnoSeleccionado($event)" (diaSeleccionado)="onFechaSeleccionada($event)" [especialista]="especialistaSeleccionado" [horarioSeleccionado]="turnoSeleccionado" [fechaSeleccionada]="diaSeleccionado"></app-listado-turnos-disponibles>
+  </div>
+
+  <div class="row text-center" *ngIf="turnoSeleccionado && !turnoSolicitado">
+    <div class="col-12">
+      <button type="button" class="btn btn-success btn-lg my-3" (click)="solicitarTurno()">
+        Solicitar turno para {{especialidadSeleccionada}} con Dr/a. {{especialistaSeleccionado.apellido}} el día {{turnoSeleccionado|fechaHora : 'dia'}} {{turnoSeleccionado|fechaHora : 'fechaCompleta'}} a las {{turnoSeleccionado|fechaHora : 'horario'}}hs
+      </button>
+    </div>
+  </div>
+
+  <div class="row text-center my-3" *ngIf="loading">
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+    </div>
+  </div>
+
+  <div class="row text-center" *ngIf="turnoSolicitado">
+    <div class="col-12">
+      <div  class="alert alert-success" role="alert">Turno solicitado!</div>
+      <button type="button" class="btn btn-secondary btn-lg my-3" routerLink="../">Regresar al Home</button>
+    </div>
+  </div>
+
+</div>
+

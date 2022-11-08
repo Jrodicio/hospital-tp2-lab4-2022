@@ -5,9 +5,15 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 import { SharedModule } from '../../shared/shared.module';
 import { NavSidebartComponent } from './components/nav-sidebart/nav-sidebart.component';
-import { AltaAdministradorComponent } from './pages/alta-administrador/alta-administrador.component';
-import { SeleccionAltaComponent } from './pages/seleccion-alta/seleccion-alta.component';
+import { AltaAdministradorComponent } from './components/alta-administrador/alta-administrador.component';
+import { SeleccionAltaComponent } from './components/seleccion-alta/seleccion-alta.component';
 import { RegistroModule } from '../registro/registro.module';
+import { RouterModule } from '@angular/router';
+import { UsuariosComponent } from './pages/usuarios/usuarios.component';
+import { ListadoUsuariosComponent } from './components/listado-usuarios/listado-usuarios.component';
+import { DetalleUsuarioComponent } from './components/detalle-usuario/detalle-usuario.component';
+import { MiPerfilComponent } from './pages/mi-perfil/mi-perfil.component';
+import { MisHorariosComponent } from './components/mis-horarios/mis-horarios.component';
 
 
 @NgModule({
@@ -15,9 +21,15 @@ import { RegistroModule } from '../registro/registro.module';
     HomeComponent,
     NavSidebartComponent,
     AltaAdministradorComponent,
-    SeleccionAltaComponent
+    SeleccionAltaComponent,
+    UsuariosComponent,
+    ListadoUsuariosComponent,
+    DetalleUsuarioComponent,
+    MiPerfilComponent,
+    MisHorariosComponent
   ],
   imports: [
+    RouterModule,
     CommonModule,
     HomeRoutingModule,
     SharedModule,

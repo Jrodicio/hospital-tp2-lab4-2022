@@ -1,0 +1,43 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Especialidad</th>
+      <th scope="col">Paciente</th>
+      <th scope="col">Especialista</th>
+      <th scope="col">Día</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Horario</th>
+      <th scope="col">Estado</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let turno of listadoTurnos; let i = index">
+      <th scope="row">{{i+1}}</th>
+      <td>{{turno.especialidad}}</td>
+      <td>{{turno.paciente.apellido}}, {{turno.paciente.nombre}}</td>
+      <td>Dr/a. {{turno.especialista.apellido}}, {{turno.especialista.nombre}}</td>
+      <td>{{turno.fecha | fechaFromNumber | fechaHora : 'dia'}}</td>
+      <td>{{turno.fecha | fechaFromNumber | fechaHora : 'fechaCompleta'}}</td>
+      <td>{{turno.fecha | fechaFromNumber | fechaHora : 'horario'}}</td>
+      <td><h4>{{turno.estado}}</h4></td>
+      <td  *ngIf="perfilUsuario == 'Especialista'">
+        <button type="button" class="btn btn-danger btn-sm"    (click)="cancelar(turno)"   *ngIf="!['Aceptado','Realizado','Rechazado','Cancelado'].includes(turno.estado)">Cancelar</button>
+        <button type="button" class="btn btn-warning btn-sm"   (click)="rechazar(turno)"   *ngIf="!['Aceptado','Realizado','Cancelado','Rechazado'].includes(turno.estado)">Rechazar</button>
+        <button type="button" class="btn btn-success btn-sm"   (click)="aceptar(turno)"    *ngIf="!['Realizado','Cancelado','Rechazado','Aceptado'].includes(turno.estado)">Aceptar</button>
+        <button type="button" class="btn btn-success btn-sm"   (click)="finalizar(turno)"  *ngIf=" ['Aceptado'].includes(turno.estado)">Finalizar</button>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="verResena(turno)"  *ngIf=" ['Realizado',].includes(turno.estado)">Ver reseña</button>
+      </td>
+      <td  *ngIf="perfilUsuario == 'Paciente'">
+        <button type="button" class="btn btn-danger btn-sm" (click)="cancelar(turno)"   *ngIf="!['Realizado','Rechazado','Cancelado'].includes(turno.estado)">Cancelar</button>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="verResena(turno)"  *ngIf="turno.comentario">Ver reseña</button>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="completarEncuesta(turno)" *ngIf="turno.estado == 'Realizado' && turno.comentario" >Encuesta</button>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="verResena(turno)"  *ngIf="turno.estado == 'Realizado'">Calificar atención</button>
+      </td>
+      <td  *ngIf="perfilUsuario == 'Administrador'">
+        <button type="button" class="btn btn-danger btn-sm" (click)="cancelar(turno)" *ngIf="!['Realizado','Rechazado','Cancelado','Aceptado'].includes(turno.estado)">Cancelar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

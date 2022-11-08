@@ -1,0 +1,11 @@
+.card {
+  height: 80px;
+  width: 16.6%;
+  min-width: 150px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.12);
+  display: inline-block;
+}
+
+.selected{
+  background-color: rgba(0, 255, 0, 0.12)
+}

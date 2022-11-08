@@ -1,0 +1,22 @@
+<div class="card-deck my-3">
+  <div class="card" (click)="seleccionar(especialidad)" [ngClass]="checkStatus(especialidad)" *ngFor="let especialidad of listaEspecialidades">
+    <img class="card-img-top img-fluid" src="../../../../../assets/images/{{especialidad}}.png" alt={{especialidad}}>
+    <div class="card-body">
+      <!-- <h5 class="card-title">{{especialidad}}</h5> -->
+    </div>
+  </div>
+
+  <!-- <div class="card" (click)="toggleMostrar()">
+    <img class="card-img-top" src="../../../../../assets/images/otrasEspecialidades.png" alt="Otras especialidades">
+    <div class="card-body">
+      <h5 class="card-title">Otras especialidades</h5>
+    </div>
+  </div> -->
+
+  <div class="card" (click)="seleccionar(especialidad)" [ngClass]="checkStatus(especialidad)" *ngFor="let especialidad of listaOtras">
+    <img class="card-img-top img-fluid" src="../../../../../assets/images/especialidadesImg.png" alt="{{especialidad}}">
+    <div class="card-body">
+      <!-- <h5 class="card-title">{{especialidad}}</h5> -->
+    </div>
+  </div>
+</div>

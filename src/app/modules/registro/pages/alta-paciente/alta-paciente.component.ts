@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { AuthService } from '../../../../providers/auth.service';
 import { FirestoreService } from '../../../../providers/firestore.service';
 
-import { Router } from '@angular/router';
 import { StorageService } from '../../../../providers/storage.service';
-import { sendEmailVerification } from 'firebase/auth';
+import { CreateUserService } from '../../../../providers/create-user.service';
 
 @Component({
   selector: 'app-alta-paciente',
@@ -23,9 +21,13 @@ export class AltaPacienteComponent implements OnInit {
   public errorRegistro:{message: string, opacity: number};
   public pacienteCargando: boolean = false;
 
+  public registroRealizado: boolean = false;
+
+  private captchaValido: boolean = false;
+
   constructor(
     private formBuilder: FormBuilder,
-    public authService: AuthService,
+    private createUserService: CreateUserService,
     private firestoreService: FirestoreService,
     private storageService: StorageService,
   ) {
@@ -57,7 +59,10 @@ export class AltaPacienteComponent implements OnInit {
   registrarPaciente(){
     this.errorRegistro = {message: '', opacity: 0};
 
-    if(this.datosBasicosForm?.status == "INVALID" || this.pacienteForm.status == "INVALID"){
+    if(!this.captchaValido){
+      this.mostrarError("Debe validar el CAPTCHA deslizable");
+    }
+    else if(this.datosBasicosForm?.status == "INVALID" || this.pacienteForm.status == "INVALID"){
       this.mostrarError('Verifique que todos los datos sean correctos');
     }
     else{
@@ -65,7 +70,7 @@ export class AltaPacienteComponent implements OnInit {
       this.datosBasicosForm?.disable();
 
       const user = {correo: this.of['correo'].value, contraseña: this.of['contraseña'].value};
-      this.authService.createUser(user)
+      this.createUserService.createUser(user)
       .then((userCredential)=>{
         this.storageService.subirImagenPerfil(this.imagenPerfil1!, userCredential.user.uid)
         .then(()=>{
@@ -73,7 +78,7 @@ export class AltaPacienteComponent implements OnInit {
           .then(imgURL =>{
             this.storageService.subirImagenPerfil(this.imagenPerfil2!, '2-'+userCredential.user.uid)
             .then(()=>{
-              this.storageService.getURLProfile(userCredential.user.uid)
+              this.storageService.getURLProfile('2-'+userCredential.user.uid)
               .then(imgURL2 =>{
                 let paciente = {
                   uid: userCredential.user.uid,
@@ -89,9 +94,10 @@ export class AltaPacienteComponent implements OnInit {
                 }
                 this.firestoreService.setDocument('users', userCredential.user.uid, paciente)
                 .then(() => {
-                  this.authService.actualizarPerfil(paciente.nombre, paciente.imgURL);
-                  this.authService.enviarMailVerificacion(userCredential.user);
-                  this.authService.signoutUser();
+                  this.createUserService.actualizarPerfil(paciente.nombre, paciente.imgURL);
+                  this.createUserService.enviarMailVerificacion(userCredential.user);
+                  this.createUserService.signoutUser();
+                  this.registroRealizado = true;
                 })
                 .catch((error)=>{
                   this.errorHandler(error);
@@ -116,15 +122,11 @@ export class AltaPacienteComponent implements OnInit {
       .catch((error)=>{
         this.errorHandler(error);
       })
-      .finally(()=>{
-        this.pacienteForm.enable();
-        this.datosBasicosForm?.enable();
-      });
     }
   }
 
   errorHandler(error: any){
-    console.log("ERROR:",error);
+    console.error("ERROR:",error);
     if (error.code == 'auth/email-already-in-use'){
       this.mostrarError('El correo ya se encuentra registrado.');
     }
@@ -132,6 +134,8 @@ export class AltaPacienteComponent implements OnInit {
       console.error(error.code);
       this.mostrarError('No se ha podido registrar al usuario.');
     }
+    this.pacienteForm.enable();
+    this.datosBasicosForm?.enable();
   }
 
   ocultarError(){
@@ -167,12 +171,15 @@ export class AltaPacienteComponent implements OnInit {
 
   onUpload($event: any, perfil1: boolean){
     const file = $event.target.files[0] as File;
-    console.log(file);
     if(perfil1){
       this.imagenPerfil1 = file;
     }
     else{
       this.imagenPerfil2 = file;
     }
+  }
+
+  onCaptchaEmitido(valido: boolean){
+    this.captchaValido = valido;
   }
 }

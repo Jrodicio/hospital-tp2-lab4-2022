@@ -1,0 +1,27 @@
+<div class="container">
+  <h5>
+    Filtrar por {{filtro.especialidad ? filtro.especialidad : filtro.especialista ? 'Dr/a. '+filtro.especialista.apellido+', '+filtro.especialista.nombre : ''}}
+    <button type="button" class="btn btn-light btn-sm" (click)="limpiarFiltro()" *ngIf="filtro.especialidad || filtro.especialista">X</button>
+  </h5>
+  <div class="row">
+    <div class="col col-6">
+      <h6>Especialidad</h6>
+      <div class="card-deck my-3">
+        <div class="card text-center" *ngFor="let especialidad of misEspecialidades" (click)="setEspecialidad(especialidad)">
+          <img #img class="card-img-top" [src]="'../../../../../assets/images/'+especialidad+'.png'" (error)="img.src = '../../../../../assets/images/especialidadesImg.png'">
+          <small class="card-title">{{especialidad}}</small>
+        </div>
+      </div>
+    </div>
+    <div class="col col-6">
+      <h6>Especialista</h6>
+      <div class="card-deck my-3">
+        <div class="card text-center" *ngFor="let especialista of misEspecialistas" (click)="setEspecialista(especialista)">
+          <img class="card-img-top" [src]="especialista.imgURL">
+          <small class="card-title">Dr/a. {{especialista.apellido}}, {{especialista.nombre}}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h5>Turnos solicitados</h5>
+  <app-listado-turnos [listadoTurnos]="turnosAsignados | filtrarTurnos : filtro"></app-listado-turnos>

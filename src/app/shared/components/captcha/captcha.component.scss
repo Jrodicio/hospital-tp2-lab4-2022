@@ -1,0 +1,123 @@
+input[type=range] {
+  height: 33px;
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 10px 0;
+  width: 100%;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 12px;
+  cursor: pointer;
+  // animate: 0.2s;
+  box-shadow: 2px 2px 6px #000000;
+  border-radius: 50px;
+  border: 0px solid #000000;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 1px 1px 6px #706870;
+  border: 1px solid #000000;
+  height: 25px;
+  width: 20px;
+  border-radius: 50px;
+  background: #FFFFFF;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -7px;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 12px;
+  cursor: pointer;
+  // animate: 0.2s;
+  box-shadow: 2px 2px 6px #000000;
+  border-radius: 50px;
+  border: 0px solid #000000;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 6px #706870;
+  border: 1px solid #000000;
+  height: 25px;
+  width: 20px;
+  border-radius: 50px;
+  background: #FFFFFF;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 12px;
+  cursor: pointer;
+  // animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  border: 0px solid #000000;
+  border-radius: 100px;
+  box-shadow: 2px 2px 6px #000000;
+}
+input[type=range]::-ms-fill-upper {
+  border: 0px solid #000000;
+  border-radius: 100px;
+  box-shadow: 2px 2px 6px #000000;
+}
+input[type=range]::-ms-thumb {
+  margin-top: 1px;
+  box-shadow: 1px 1px 6px #706870;
+  border: 1px solid #000000;
+  height: 25px;
+  width: 20px;
+  border-radius: 50px;
+  background: #FFFFFF;
+  cursor: pointer;
+}
+
+.red::-webkit-slider-runnable-track{
+  background: #A90000;
+}
+.red:focus::-webkit-slider-runnable-track {
+  background: #A90000;
+}
+.red::-moz-range-track{
+  background: #A90000;
+}
+.red::-ms-fill-lower{
+  background: #A90000;
+}
+.red::-ms-fill-upper{
+  background: #A90000;
+}
+.red:focus::-ms-fill-lower {
+  background: #A90000;
+}
+.red:focus::-ms-fill-upper {
+  background: #A90000;
+}
+
+.green::-webkit-slider-runnable-track{
+  background: #1b7400;
+}
+.green:focus::-webkit-slider-runnable-track {
+  background: #1b7400;
+}
+.green::-moz-range-track{
+  background: #1b7400;
+}
+.green::-ms-fill-lower{
+  background: #1b7400;
+}
+.green::-ms-fill-upper{
+  background: #1b7400;
+}
+.green:focus::-ms-fill-lower {
+  background: #1b7400;
+}
+.green:focus::-ms-fill-upper {
+  background: #1b7400;
+}

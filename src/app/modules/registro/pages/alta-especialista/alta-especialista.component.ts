@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl, Valid
 import { AuthService } from '../../../../providers/auth.service';
 import { FirestoreService } from '../../../../providers/firestore.service';
 import { StorageService } from '../../../../providers/storage.service';
+import { CreateUserService } from '../../../../providers/create-user.service';
 
 
 @Component({
@@ -20,9 +21,14 @@ export class AltaEspecialistaComponent implements OnInit {
   public errorRegistro:{message: string, opacity: number};
   public especialistaCargando: boolean = false;
 
+  public registroRealizado: boolean = false;
+
+  private captchaValido: boolean = false;
+
   constructor(
     private formBuilder: FormBuilder,
-    public authService: AuthService,
+    private authService: AuthService,
+    private createUserService: CreateUserService,
     private firestoreService: FirestoreService,
     private storageService: StorageService,
   ){
@@ -51,7 +57,10 @@ export class AltaEspecialistaComponent implements OnInit {
   registrarEspecialista(){
     this.errorRegistro = {message: '', opacity: 0};
 
-    if(this.datosBasicosForm?.status == "INVALID" || this.especialistaForm.status == "INVALID"){
+    if(!this.captchaValido){
+      this.mostrarError("Debe validar el CAPTCHA deslizable");
+    }
+    else if(this.datosBasicosForm?.status == "INVALID" || this.especialistaForm.status == "INVALID"){
       this.mostrarError('Verifique que todos los datos sean correctos y haber seleccionado al menos una especialidad');
     }
     else{
@@ -60,7 +69,7 @@ export class AltaEspecialistaComponent implements OnInit {
 
       const user = {correo: this.of['correo'].value, contraseña: this.of['contraseña'].value};
 
-      this.authService.createUser(user)
+      this.createUserService.createUser(user)
       .then((userCredential)=>{
         this.storageService.subirImagenPerfil(this.imagenPerfil!, userCredential.user.uid)
         .then(()=>{
@@ -84,9 +93,10 @@ export class AltaEspecialistaComponent implements OnInit {
             }
             this.firestoreService.setDocument('users', userCredential.user.uid, especialista)
             .then(() => {
-              this.authService.actualizarPerfil(especialista.nombre, especialista.imgURL);
-              this.authService.enviarMailVerificacion(userCredential.user);
-              this.authService.signoutUser();
+              this.createUserService.actualizarPerfil(especialista.nombre, especialista.imgURL);
+              this.createUserService.enviarMailVerificacion(userCredential.user);
+              this.createUserService.signoutUser();
+              this.registroRealizado = true;
             })
             .catch((error)=>{
               this.errorHandler(error);
@@ -103,10 +113,6 @@ export class AltaEspecialistaComponent implements OnInit {
       .catch((error)=>{
         this.errorHandler(error);
       })
-      .finally(()=>{
-        this.especialistaForm.enable();
-        this.datosBasicosForm?.enable();
-      });
     }
   }
 
@@ -119,6 +125,8 @@ export class AltaEspecialistaComponent implements OnInit {
       console.error(error.code);
       this.mostrarError('No se ha podido registrar al usuario.');
     }
+    this.especialistaForm.enable();
+    this.datosBasicosForm?.enable();
   }
 
   ocultarError(){
@@ -174,6 +182,10 @@ export class AltaEspecialistaComponent implements OnInit {
     control.get('oftalmologia')?.updateValueAndValidity({onlySelf: true});
     control.get('cardiologia')?.updateValueAndValidity({onlySelf: true});
     control.get('otraEspecialidad')?.updateValueAndValidity({onlySelf: true});
+  }
+
+  onCaptchaEmitido(valido: boolean){
+    this.captchaValido = valido;
   }
 
 }

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile, User, NextOrObserver } from '@angular/fire/auth';
-import { sendEmailVerification } from 'firebase/auth';
+import { Auth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile, User, NextOrObserver } from '@angular/fire/auth';
 import { FirestoreService } from './firestore.service';
 
 @Injectable({
@@ -40,10 +39,6 @@ export class AuthService {
     });
   }
 
-  createUser(user:{correo:string, contraseña:string}) {
-    return createUserWithEmailAndPassword(this.angularFireAuth, user.correo, user.contraseña);
-  }
-
   signinUser(user:{correo:string, contraseña:string}) {
     return signInWithEmailAndPassword(this.angularFireAuth, user.correo, user.contraseña);
   }
@@ -58,13 +53,5 @@ export class AuthService {
 
   actualizarPerfil(displayName:string, photoURL?: string){
     return updateProfile(this.userData!,{displayName, photoURL});
-  }
-
-  estaLogueado(observer: NextOrObserver<User | null>){
-    return this.angularFireAuth.onAuthStateChanged(observer);
-  }
-
-  enviarMailVerificacion(user: User){
-    return sendEmailVerification(user);
   }
 }

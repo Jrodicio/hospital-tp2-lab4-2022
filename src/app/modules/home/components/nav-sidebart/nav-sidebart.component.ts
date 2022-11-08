@@ -9,10 +9,13 @@ import { AuthService } from '../../../../providers/auth.service';
 })
 export class NavSidebartComponent implements OnInit {
 
+  public perfilUser: string | null;
+
   constructor(
     private router: Router,
     private authService: AuthService
   ) {
+    this.perfilUser = localStorage.getItem('userProfile');
   }
 
   ngOnInit(): void {

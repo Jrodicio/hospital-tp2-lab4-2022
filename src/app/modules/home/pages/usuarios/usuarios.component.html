@@ -1,0 +1,3 @@
+<app-listado-usuarios (usuarioSelected)="onUsuarioSelected($event)"></app-listado-usuarios>
+<app-detalle-usuario [usuario]="usuarioSeleccionado" *ngIf="usuarioSeleccionado !== undefined"></app-detalle-usuario>
+<app-seleccion-alta></app-seleccion-alta>

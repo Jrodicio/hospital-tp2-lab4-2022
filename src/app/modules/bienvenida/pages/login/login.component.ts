@@ -62,6 +62,7 @@ export class LoginComponent implements OnInit {
             this.authService.signoutUser();
             this.mostrarError('Su correo no fue validado, verifique su casilla.');
           }
+          this.estaCargando = false
         })
       }).catch((error) => {
         if(error.code === 'auth/user-not-found')
@@ -69,7 +70,7 @@ export class LoginComponent implements OnInit {
           this.mostrarError('Verifique sus credenciales y vuelva a probar.');
         }
         else if(error.code === 'auth/wrong-password')
-        {gi
+        {
           this.mostrarError('Combinación de correo y clave incorrecta.');
         }
         else if(error.code === 'auth/too-many-requests')
@@ -80,10 +81,8 @@ export class LoginComponent implements OnInit {
         {
           this.mostrarError('Ha ocurrido un error! Vuelva a probar en unos instantes.');
         }
-      })
-      .finally(()=>{
         this.estaCargando = false
-      });
+      })
   }
 
   ocultarError(){

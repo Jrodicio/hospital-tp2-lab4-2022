@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="w-100 m-auto text-center">
+    <img class="mb-4 heartbeat" src="../../../../../assets/images/administrador.png" width="180" height="180">
+    <h1 class="h3 mb-3 fw-normal">Complete los datos</h1>
+  </div>
+
+  <app-alta-usuario (formModEvent)="onFormMod($event)" (fileUploadEvent)="onUpload($event)"></app-alta-usuario>
+
+  <span *ngIf="administradorCargando" class="spinner-border spinner-border-sm"></span>
+  <div class="w-100 m-auto text-center" [hidden]="registroRealizado">
+    <app-captcha (captchaEmitido)="onCaptchaEmitido($event)"></app-captcha>
+    <div  class="alert alert-danger" role="alert" [style.opacity]="errorRegistro.opacity">{{errorRegistro.message}}</div>
+    <button class="btn btn-success btn-lg" (click)="registrarAdministrador()">Registrar</button>
+    <button type="button" class="btn btn-danger btn-lg" routerLink="../">Cancelar</button>
+  </div>
+  <div class="w-100 m-auto text-center" [hidden]="!registroRealizado">
+    <div  class="alert alert-success" role="alert">Registro realizado, se estará enviando un correo a la casilla indicada</div>
+    <button type="button" class="btn btn-secondary btn-lg" routerLink="../">Regresar</button>
+  </div>
+</div>
+<br>
