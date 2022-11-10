@@ -1,4 +1,4 @@
-<div class="card-deck my-3">
+<div class="card-deck my-3  fade-in">
   <div class="card text-center" (click)="seleccionar(especialista)" [ngClass]="checkStatus(especialista)" *ngFor="let especialista of listaEspecialistas | filtrarEspecialistas: especialidad">
     <div class="card-body">
       <h6 class="card-title">Dr/a. {{especialista.apellido}}, {{especialista.nombre}}</h6>

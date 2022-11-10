@@ -1,5 +1,5 @@
 <h6>Elegí un día</h6>
-<div class="card-deck my-6">
+<div class="card-deck my-6  fade-in">
   <div class="card" (click)="seleccionarFecha(fecha)" [ngClass]="fechaSeleccionada === fecha ? 'selected' : ''" *ngFor="let fecha of turnosDisponibles|distinctFecha">
     <div class="card-body">
       <div class="card-title">{{fecha|fechaHora : 'dia'}}</div>
@@ -10,7 +10,7 @@
 <br>
 <div *ngIf="fechaSeleccionada">
   <h6>Elegí un horario</h6>
-  <div class="card-deck my-6">
+  <div class="card-deck my-6  fade-in">
     <div class="card" (click)="seleccionarHorario(horario)" [ngClass]="horarioSeleccionado === horario ? 'selected' : ''" *ngFor="let horario of turnosDisponibles|filtrarFecha : fechaSeleccionada">
       <div class="card-body text-center">
         <h5>{{horario|fechaHora : 'horario'}}</h5>
