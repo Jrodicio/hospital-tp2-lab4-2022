@@ -25,7 +25,9 @@ export class ListadoEspecialidadesComponent implements OnInit {
     this.firestoreService.getDocuments("users").subscribe(usuarios =>{
       usuarios.forEach((usuario)=>{
         if(usuario['perfil'] == "Especialista"){
+          console.log(usuario);
           if(usuario['habilitado']){
+            console.log(usuario);
             if(usuario['cardiologia'] && this.listaEspecialidades.indexOf('Cardiología') == -1){
               this.listaEspecialidades.push('Cardiología');
             }

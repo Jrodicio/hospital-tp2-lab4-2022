@@ -8,7 +8,7 @@
       <h6>Especialidad</h6>
       <div class="card-deck my-3">
         <div class="card text-center" *ngFor="let especialidad of misEspecialidades" (click)="setEspecialidad(especialidad)">
-          <img #img class="card-img-top" [src]="'../../../../../assets/images/'+especialidad+'.png'" (error)="img.src = '../../../../../assets/images/especialidadesImg.png'">
+          <img #img class="card-img-top" [src]="'../../../../../assets/images/'+especialidad+'.png'" default="../../../../../assets/images/especialidadesImg.png">
           <small class="card-title">{{especialidad}}</small>
         </div>
       </div>
@@ -23,5 +23,15 @@
       </div>
     </div>
   </div>
+  <!-- <div class="row">
+    <div class="col">
+      <h6>Filtro adicional:</h6>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-6">
+      <input type="text" class="form-control rounded" [(ngModel)]="filtroAdicional">
+    </div>
+  </div> -->
   <h5>Turnos solicitados</h5>
-  <app-listado-turnos [listadoTurnos]="turnosAsignados | filtrarTurnos : filtro"></app-listado-turnos>
+  <app-listado-turnos [listadoTurnos]="turnosAsignados | filtrarTurnos : filtro : undefined"></app-listado-turnos>

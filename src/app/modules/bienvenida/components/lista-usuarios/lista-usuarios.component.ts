@@ -11,6 +11,7 @@ export class ListaUsuariosComponent implements OnInit {
   @Output()
     usuarioSelected: EventEmitter<string> = new EventEmitter();
 
+  public cargando: boolean = true;
   public listaUsuarios: any[] = [];
   public listaUid: any[] = [
     {uid:'5wGzPb2hvbWxngbxYlCJ8vW3Aij2'},
@@ -30,11 +31,13 @@ export class ListaUsuariosComponent implements OnInit {
         usuario.imgURL = userData.get('imgURL');
         usuario.perfil = userData.get('perfil');
         this.listaUsuarios.push(usuario);
-      });
+      })
+      .then(()=> this.cargando=false);
     });
   }
 
   ngOnInit(): void {
+    console.log("Ejecuta onInit")
   }
 
   seleccionarUsuario(usuario: any){

@@ -1,10 +1,15 @@
-<div class="container">
-  <ul class="listado" style="list-style: none;">
-    <li *ngFor="let usuario of listaUsuarios">
-      <button class="btn btn-light border border-dark btn-size" (click)="seleccionarUsuario(usuario)">
-        <img src={{usuario.imgURL}}>
-        <small>{{usuario.perfil}}</small>
-      </button>
-    </li>
-  </ul>
+
+<div relativeLoader [loading]="cargando">
+  <div>
+    <div class="container">
+      <ul class="listado" style="list-style: none;">
+        <li *ngFor="let usuario of listaUsuarios">
+          <button class="btn btn-light border border-dark btn-size" (click)="seleccionarUsuario(usuario)">
+            <img src={{usuario.imgURL}}>
+            <small>{{usuario.perfil}}</small>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>

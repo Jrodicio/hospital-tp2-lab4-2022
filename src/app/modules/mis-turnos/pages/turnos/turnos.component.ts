@@ -13,6 +13,7 @@ export class TurnosComponent implements OnInit {
   public misEspecialidades: string[] = [];
 
   public filtro: {administrador: boolean, especialista: any, paciente: any, especialidad: string} = {administrador: true, especialista: undefined, paciente: undefined, especialidad: ''};
+  public filtroAdicional: string = '';
 
   constructor(private firestoreService: FirestoreService) {
   }

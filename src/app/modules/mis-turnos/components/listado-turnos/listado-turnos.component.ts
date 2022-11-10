@@ -59,18 +59,28 @@ export class ListadoTurnosComponent implements OnInit {
     this.firestoreService.setDocument("turnos", turno.id, turno);
   }
 
+  cargarInformeClinico(turno: any){
+    turno.cargarInforme = true;
+  }
+
+  onInformeClinicoCargado(turnoOld: any, turnoNew: any){
+    turnoOld = turnoNew;
+    turnoOld.cargarInforme = false;
+    this.finalizar(turnoOld);
+  }
+
   finalizar(turno: any){
-    swal("Comentario:", {
+    swal("Ingrese un comentario sobre la revisión", {
       content: {'element':'input'},
       icon: 'info',
-      title: 'Finalizar'
+      title: 'Comentario'
     })
     .then((comentario) => {
       if(comentario){
-        swal("Diagnóstico:", {
+        swal("¿Cuál es el diagnóstico del paciente?", {
           content: {'element':'input'},
           icon: 'info',
-          title: 'Finalizar'
+          title: 'Diagnóstico'
         })
         .then((diagnostico) => {
           if(diagnostico){

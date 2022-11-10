@@ -1,0 +1,18 @@
+<div class="container">
+  <h5>Filtrar pacientes</h5>
+  <div relativeLoader [loading]="cargando">
+    <div>
+      <div class="scale-in-center">
+        <div class="row">
+          <ul class="list-group list-group-horizontal position-relative overflow-auto w-75">
+            <li class="list-group-item" *ngFor="let paciente of listaPacientes">
+              <img class="img" [src]="paciente.imgURL" [alt]="paciente.email">
+              <h6 class="card-title">{{paciente.nombre}} {{paciente.apellido}} </h6>
+              <button class="btn btn-primary bottom-0" (click)="seleccionarPaciente(paciente)">Seleccionar</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

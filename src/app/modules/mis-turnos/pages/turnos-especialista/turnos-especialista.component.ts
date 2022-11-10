@@ -13,6 +13,7 @@ export class TurnosEspecialistaComponent implements OnInit {
   public misEspecialidades: string[] = [];
 
   public filtro: {administrador: boolean, especialista: any, paciente: any, especialidad: string} = {administrador: false, especialista: undefined, paciente: undefined, especialidad: ''};
+  public filtroAdicional: string = '';
 
   constructor(private firestoreService: FirestoreService) {
   }
@@ -23,7 +24,6 @@ export class TurnosEspecialistaComponent implements OnInit {
       this.filtro.especialista = user.data();
       this.firestoreService.getDocuments("turnos").subscribe(turnos => {
         this.turnosAsignados = turnos.filter(turno => turno['especialista'].uid === this.filtro.especialista.uid).sort((a,b) => a['fecha'] - b['fecha']);
-        console.log("turnos asignados:",this.turnosAsignados)
         this.turnosAsignados.forEach(turno => {
           if(!this.misPacientes.find((paciente => turno.paciente.uid === paciente.uid))){
             this.misPacientes.push(turno.paciente);

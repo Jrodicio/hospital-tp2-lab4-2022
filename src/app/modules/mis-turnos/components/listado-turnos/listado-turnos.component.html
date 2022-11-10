@@ -26,7 +26,10 @@
         <button type="button" class="btn btn-danger btn-sm"    (click)="cancelar(turno)"   *ngIf="!['Aceptado','Realizado','Rechazado','Cancelado'].includes(turno.estado)">Cancelar</button>
         <button type="button" class="btn btn-warning btn-sm"   (click)="rechazar(turno)"   *ngIf="!['Aceptado','Realizado','Cancelado','Rechazado'].includes(turno.estado)">Rechazar</button>
         <button type="button" class="btn btn-success btn-sm"   (click)="aceptar(turno)"    *ngIf="!['Realizado','Cancelado','Rechazado','Aceptado'].includes(turno.estado)">Aceptar</button>
-        <button type="button" class="btn btn-success btn-sm"   (click)="finalizar(turno)"  *ngIf=" ['Aceptado'].includes(turno.estado)">Finalizar</button>
+        <button type="button" class="btn btn-success btn-sm"   (click)="cargarInformeClinico(turno)"  *ngIf=" ['Aceptado'].includes(turno.estado)">Finalizar</button>
+        <div *ngIf="turno.cargarInforme">
+          <app-informe-clinico [turno]="turno" (informeCargado)="onInformeClinicoCargado(turno, $event)"></app-informe-clinico>
+        </div>
         <button type="button" class="btn btn-secondary btn-sm" (click)="verResena(turno)"  *ngIf=" ['Realizado',].includes(turno.estado)">Ver reseña</button>
       </td>
       <td  *ngIf="perfilUsuario == 'Paciente'">

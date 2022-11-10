@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { AuthService } from '../../../../providers/auth.service';
 import { Router } from '@angular/router';
 
@@ -7,8 +7,9 @@ import { Router } from '@angular/router';
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.scss']
 })
-export class WelcomeComponent implements OnInit {
+export class WelcomeComponent implements OnInit, AfterContentInit {
 
+  public cargando: boolean = true;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -17,6 +18,11 @@ export class WelcomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+  }
+
+  ngAfterContentInit(): void {
+    this.cargando = false;
   }
 
 }

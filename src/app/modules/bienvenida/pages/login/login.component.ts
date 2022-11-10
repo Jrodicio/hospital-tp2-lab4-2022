@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../../../../providers/auth.service';
@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
   public estaCargando: boolean = false;
   public loginForm: FormGroup;
   public errorLogin:{message: string, opacity: number};
+
+  public cargando: boolean = true;
 
   constructor(
     private formBuilder: FormBuilder,

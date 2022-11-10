@@ -18,7 +18,7 @@ Sistema de gestión de turnos para nuestra Clinica Online con el que podrán ges
 El sistema presenta una interfaz similar para cada usuario, diferenciando los accesos acorde al perfil del mismo.
 Se encuentra totalmente orientado a la facilidad de gestión y que cada perfil solo tenga acceso a aquellos sectores con los cuales pueda interactuar.
 
-# :information_source: ¿Contenido de la aplicación?
+# :information_source: Contenido de la aplicación
 
 ## Bienvenida
 

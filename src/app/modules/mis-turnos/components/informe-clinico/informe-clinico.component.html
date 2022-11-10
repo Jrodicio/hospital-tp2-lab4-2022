@@ -1,0 +1,69 @@
+<div class="row my-1">
+  <div class="col-6">
+    Altura:
+  </div>
+  <div class="col-6">
+    <input type="number" class="rounded form-control" [(ngModel)]="turno.informeClinico.altura" placeholder="173">
+  </div>
+</div>
+
+<div class="row my-1">
+  <div class="col-6">
+    Peso:
+  </div>
+  <div class="col-6">
+    <input type="number" class="rounded form-control" [(ngModel)]="turno.informeClinico.peso" placeholder="73.5">
+  </div>
+</div>
+
+<div class="row my-1">
+  <div class="col-6">
+    Temperatura:
+  </div>
+  <div class="col-6">
+    <input type="number" class="rounded form-control" [(ngModel)]="turno.informeClinico.temperatura" placeholder="34.5">
+  </div>
+</div>
+
+<div class="row my-1">
+  <div class="col-6">
+    Presión:
+  </div>
+  <div class="col-6">
+    <input type="number" class="rounded form-control" [(ngModel)]="turno.informeClinico.presion" placeholder="120">
+  </div>
+</div>
+
+<button type="button" class="btn btn-primary btn-sm my-1" (click)="addDato(1)" *ngIf="!datoAdicional1">+</button>
+
+<div class="row my-1" *ngIf="datoAdicional1">
+  <div class="col-6">
+    <input type="text" class="rounded form-control" [(ngModel)]="datoAdicional1.clave" placeholder="Dato adicional">
+  </div>
+  <div class="col-6">
+    <input type="text" class="rounded form-control" [(ngModel)]="datoAdicional1.valor" placeholder="Valor">
+  </div>
+  <div class="col-2" *ngIf="!datoAdicional2">
+    <button type="button" class="btn btn-primary btn-sm my-1" (click)="addDato(2)">+</button>
+  </div>
+</div>
+<div class="row my-1" *ngIf="datoAdicional2">
+  <div class="col-6">
+    <input type="text" class="rounded form-control" [(ngModel)]="datoAdicional2.clave" placeholder="Dato adicional">
+  </div>
+  <div class="col-6">
+    <input type="text" class="rounded form-control" [(ngModel)]="datoAdicional2.valor" placeholder="Valor">
+  </div>
+  <div class="col-2" *ngIf="!datoAdicional3">
+    <button type="button" class="btn btn-primary btn-sm my-1" (click)="addDato(3)">+</button>
+  </div>
+</div>
+<div class="row my-1" *ngIf="datoAdicional3">
+  <div class="col-6">
+    <input type="text" class="rounded form-control" [(ngModel)]="datoAdicional3.clave" placeholder="Dato adicional">
+  </div>
+  <div class="col-6">
+    <input type="text" class="rounded form-control" [(ngModel)]="datoAdicional3.valor" placeholder="Valor">
+  </div>
+</div>
+<button type="button" class="btn btn-success my-1" (click)="cargarInforme(datoAdicional1, datoAdicional2, datoAdicional3)">Cargar informe y finalizar turno</button>

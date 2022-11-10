@@ -1,3 +1,8 @@
-<app-listado-usuarios (usuarioSelected)="onUsuarioSelected($event)"></app-listado-usuarios>
-<app-detalle-usuario [usuario]="usuarioSeleccionado" *ngIf="usuarioSeleccionado !== undefined"></app-detalle-usuario>
-<app-seleccion-alta></app-seleccion-alta>
+<div class="container">
+  <app-listado-usuarios (usuarioSelected)="onUsuarioSelected($event)"></app-listado-usuarios>
+  <div *ngIf="usuarioSeleccionado !== undefined">
+    <app-detalle-usuario [usuario]="usuarioSeleccionado"></app-detalle-usuario>
+    <app-historial-clinico [usuario]="usuarioSeleccionado" *ngIf="usuarioSeleccionado.perfil === 'Paciente'"></app-historial-clinico>
+  </div>
+  <app-seleccion-alta></app-seleccion-alta>
+</div>

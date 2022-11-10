@@ -1,0 +1,42 @@
+<p class="display-4 text-center my-3">Historial clínico</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Fecha/hora turno</th>
+      <th scope="col">Especialista</th>
+      <th scope="col">Especialidad</th>
+      <th scope="col">Altura</th>
+      <th scope="col">Peso</th>
+      <th scope="col">Presión</th>
+      <th scope="col">Temperatura</th>
+      <th scope="col">Datos adicionales</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let turno of listaTurnos; let i = index">
+      <th scope="row">{{i+1}}</th>
+      <td>{{turno.fecha | fechaFromNumber | fechaHora : 'fechaCompleta'}} {{turno.fecha | fechaFromNumber | fechaHora : 'horario'}}</td>
+      <td>Dr/a. {{turno.especialista.apellido}}, {{turno.especialista.nombre}}</td>
+      <td>{{turno.especialidad}}</td>
+      <td>{{turno.informeClinico.altura}} cm</td>
+      <td>{{turno.informeClinico.peso}} Kgs</td>
+      <td>{{turno.informeClinico.presion}} mmHg</td>
+      <td>{{turno.informeClinico.temperatura}}°C</td>
+      <td>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col" *ngFor="let key of getObservacionesAdicionales(turno)">{{key}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td scope="col" *ngFor="let key of getObservacionesAdicionales(turno)">{{turno.informeClinico[key]}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>

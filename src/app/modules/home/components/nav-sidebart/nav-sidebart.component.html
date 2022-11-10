@@ -7,22 +7,25 @@
 
     <ul class="nav nav-pills">
       <li class="nav-item">
-        <button type="button" class="btn btn-primary" routerLink="/home">Home</button>
+        <button type="button" class="btn" [ngClass]="checkRoute('/home')? 'btn-primary' : 'btn-light'" routerLink="/home">Home</button>
       </li>
       <li class="nav-item">
-        <button type="button" class="btn btn-light" routerLink="/home/usuarios" [hidden]="perfilUser != 'Administrador'">Usuarios</button>
+        <button type="button" class="btn" [ngClass]="checkRoute('/home/usuarios')? 'btn-primary' : 'btn-light'" routerLink="/home/usuarios" [hidden]="perfilUser != 'Administrador'">Usuarios</button>
       </li>
       <li class="nav-item">
-        <button type="button" class="btn btn-light" routerLink="/home/mis-turnos/{{perfilUser}}" [hidden]="perfilUser != 'Especialista' && perfilUser != 'Paciente'">Mis turnos</button>
+        <button type="button" class="btn" [ngClass]="checkRoute('/home/mis-turnos/'+perfilUser)? 'btn-primary' : 'btn-light'" routerLink="/home/mis-turnos/{{perfilUser}}" [hidden]="perfilUser != 'Especialista' && perfilUser != 'Paciente'">Mis turnos</button>
       </li>
       <li class="nav-item">
-        <button type="button" class="btn btn-light" routerLink="/home/turnos" [hidden]="perfilUser != 'Administrador'">Turnos</button>
+        <button type="button" class="btn" [ngClass]="checkRoute('/home/mis-pacientes')? 'btn-primary' : 'btn-light'" routerLink="/home/mis-pacientes" [hidden]="perfilUser != 'Especialista'">Mis pacientes</button>
       </li>
       <li class="nav-item">
-        <button type="button" class="btn btn-light" routerLink="/home/solicitar-turno" [hidden]="perfilUser != 'Administrador' && perfilUser != 'Paciente'">Solicitar turno</button>
+        <button type="button" class="btn" [ngClass]="checkRoute('/home/turnos')? 'btn-primary' : 'btn-light'" routerLink="/home/turnos" [hidden]="perfilUser != 'Administrador'">Turnos</button>
       </li>
       <li class="nav-item">
-        <button type="button" class="btn btn-light" routerLink="/home/mi-perfil">Mi perfil</button>
+        <button type="button" class="btn" [ngClass]="checkRoute('/home/solicitar-turno')? 'btn-primary' : 'btn-light'" routerLink="/home/solicitar-turno" [hidden]="perfilUser != 'Administrador' && perfilUser != 'Paciente'">Solicitar turno</button>
+      </li>
+      <li class="nav-item">
+        <button type="button" class="btn" [ngClass]="checkRoute('/home/mi-perfil')? 'btn-primary' : 'btn-light'" routerLink="/home/mi-perfil">Mi perfil</button>
       </li>
       <li class="nav-item">
         <button type="button" class="btn btn-danger" (click)="logout()">Salir</button>

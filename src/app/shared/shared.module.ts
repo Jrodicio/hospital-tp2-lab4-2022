@@ -13,7 +13,8 @@ import { FiltroUsuariosPipe } from './pipes/filtro-usuarios.pipe';
 import { FiltrarPacientesPipe } from './pipes/filtrar-pacientes.pipe';
 import { FiltrarTurnosPipe } from './pipes/filtrar-turnos.pipe';
 import { FechaFromNumberPipe } from './pipes/fecha-from-number.pipe';
-import { LoadingDirective } from './directives/loading.directive';
+import { DefaultImageDirective } from './directives/default-image.directive';
+import { RelativeLoaderDirective } from './directives/relative-loader.directive';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { LoadingDirective } from './directives/loading.directive';
     FiltrarPacientesPipe,
     FiltrarTurnosPipe,
     FechaFromNumberPipe,
-    LoadingDirective,
+    DefaultImageDirective,
+    RelativeLoaderDirective,
   ],
   imports: [
     CommonModule,
@@ -51,7 +53,8 @@ import { LoadingDirective } from './directives/loading.directive';
     FiltrarPacientesPipe,
     FiltrarTurnosPipe,
     FechaFromNumberPipe,
-    LoadingDirective,
+    DefaultImageDirective,
+    RelativeLoaderDirective,
   ],
 })
 export class SharedModule { }

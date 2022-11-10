@@ -42,13 +42,21 @@
     <div class="col-lg-6">
       <ul>
         <h5>Imagen de perfil:</h5>
-        <img [src]="usuario.imgURL" style="height: 300px;">
+        <div relativeLoader [loading]="cargandoImg1">
+          <div>
+            <img [src]="usuario.imgURL" style="height: 300px;" (load)="isLoadedImg(1)">
+          </div>
+        </div>
       </ul>
     </div>
     <div class="col-lg-6" *ngIf="usuario.perfil == 'Paciente'">
       <ul>
-        <h5>Segunda de perfil adicional:</h5>
-        <img [src]="usuario.imgURL2" style="height: 300px;">
+        <h5>Imagen de perfil adicional:</h5>
+        <div relativeLoader [loading]="cargandoImg2">
+          <div>
+            <img [src]="usuario.imgURL2" style="height: 300px;" (load)="isLoadedImg(2)">
+          </div>
+        </div>
       </ul>
     </div>
   </div>
@@ -92,10 +100,10 @@
       </div>
       <div class="row my-3" *ngIf="perfilLogin === 'Administrador'">
         <div class="col-lg-6" (click)="toggleHabilitadoEspecialista()">
-          <button class="btn btn-success btn-size" [hidden]="!usuario.habilitado">Habilitar</button>
+          <button class="btn btn-success btn-size" [hidden]="usuario.habilitado">Habilitar</button>
         </div>
         <div class="col-lg-6" (click)="toggleHabilitadoEspecialista()">
-          <button class="btn btn-danger btn-size" [hidden]="usuario.habilitado">Deshabilitar</button>
+          <button class="btn btn-danger btn-size" [hidden]="!usuario.habilitado">Deshabilitar</button>
         </div>
       </div>
       <div class="my-3" *ngIf="usuario.perfil === 'Especialista'">
@@ -104,5 +112,4 @@
       </div>
     </div>
   </div>
-
 </div>

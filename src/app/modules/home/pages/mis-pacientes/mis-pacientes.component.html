@@ -1,0 +1,4 @@
+<div class="container">
+  <app-listado-pacientes [especialistaSeleccionado]="especialista" (pacienteSelected)="onPacienteSelected($event)"></app-listado-pacientes>
+  <app-historial-clinico [usuario]="pacienteSeleccionado" *ngIf="pacienteSeleccionado"></app-historial-clinico>
+</div>

@@ -21,11 +21,11 @@ export class NavSidebartComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  checkRoute(ruta: string){
-    if(this.router.url.includes(ruta))
-    return 'active'
+  checkRoute(ruta: string): boolean{
+    if(this.router.url == ruta)
+    return true
     else
-    return ''
+    return false
   }
 
   logout(){

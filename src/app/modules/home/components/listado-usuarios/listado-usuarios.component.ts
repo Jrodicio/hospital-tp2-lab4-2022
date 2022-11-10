@@ -13,6 +13,7 @@ export class ListadoUsuariosComponent implements OnInit {
 
   public listaUsuarios: any[]= [];
   public perfilFiltro: string = '';
+  public cargando: boolean = true;
 
   constructor(
     private firestore: FirestoreService
@@ -23,9 +24,16 @@ export class ListadoUsuariosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    setTimeout(()=>{
+      this.cargando=false
+    },2000);
+
   }
 
   seleccionarUsuario(usuario: any){
-    this.usuarioSelected.emit(usuario);
+    this.usuarioSelected.emit('');
+    setTimeout(()=>{
+      this.usuarioSelected.emit(usuario);
+    },5)
   }
 }

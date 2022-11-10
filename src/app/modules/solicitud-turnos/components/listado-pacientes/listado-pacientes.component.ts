@@ -14,14 +14,14 @@ export class ListadoPacientesComponent implements OnInit {
   public listaPacientes: any[] = [];
   public filtroPacientes: string = '';
 
-  public pacienteElegido: any;
+  public pacienteElegido: any = {uid: '0'}
 
 
   constructor(private firestoreService: FirestoreService) {
-    this.firestoreService.getDocuments('users').subscribe(users => {this.listaPacientes = users.filter(usuario => usuario['perfil'] == 'Paciente')});
   }
 
   ngOnInit(): void {
+    this.firestoreService.getDocuments('users').subscribe(users => {this.listaPacientes = users.filter(usuario => usuario['perfil'] == 'Paciente')});
   }
 
   seleccionar(paciente: any){
