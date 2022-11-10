@@ -1,5 +1,5 @@
 <p class="display-4 text-center my-3">Historial clínico</p>
-<table class="table">
+<table class="table" id="historialClinico">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -24,18 +24,9 @@
       <td>{{turno.informeClinico.presion}} mmHg</td>
       <td>{{turno.informeClinico.temperatura}}°C</td>
       <td>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col" *ngFor="let key of getObservacionesAdicionales(turno)">{{key}}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td scope="col" *ngFor="let key of getObservacionesAdicionales(turno)">{{turno.informeClinico[key]}}</td>
-            </tr>
-          </tbody>
-        </table>
+        <ul *ngFor="let key of getObservacionesAdicionales(turno); let i = index">
+          <span *ngIf="i!=0" style="display: none"> / </span><li>{{key}}: {{turno.informeClinico[key]}}</li>
+        </ul>
       </td>
     </tr>
   </tbody>

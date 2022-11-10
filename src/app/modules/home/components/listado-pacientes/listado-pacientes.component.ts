@@ -14,7 +14,6 @@ export class ListadoPacientesComponent implements OnInit {
   @Output()
     pacienteSelected: EventEmitter<any> = new EventEmitter();
 
-  private turnos: any[] = [];
   public listaPacientes: any[]= [];
   public cargando: boolean = true;
 
@@ -22,10 +21,7 @@ export class ListadoPacientesComponent implements OnInit {
     private firestoreService: FirestoreService
   ) {
     this.firestoreService.getDocuments('turnos').subscribe((turnos)=>{
-      console.log('turnos:',turnos)
-      console.log('UID:',this.especialistaSeleccionado)
       const turnosAsignados:any[] = turnos.filter(turno => turno['especialista'].uid === this.especialistaSeleccionado.uid).sort((a,b) => a['fecha'] - b['fecha']);
-      console.log('turnosAsignados:',turnosAsignados)
       turnosAsignados.forEach(turno => {
         if(!this.listaPacientes.find((paciente => turno.paciente.uid === paciente.uid))){
           this.listaPacientes.push(turno.paciente);

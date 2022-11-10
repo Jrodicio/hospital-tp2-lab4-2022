@@ -1,6 +1,9 @@
 <div class="container">
   <div *ngIf="usuario !== undefined">
     <app-detalle-usuario [usuario]="usuario"></app-detalle-usuario>
-    <app-historial-clinico [usuario]="usuario" *ngIf="usuario.perfil === 'Paciente'"></app-historial-clinico>
+    <div *ngIf="usuario.perfil === 'Paciente'" class="text-center">
+      <app-historial-clinico id="htmlData" [usuario]="usuario"></app-historial-clinico>
+      <button type="button" class="btn btn-success my-3" (click)="savePDF()">Descargar</button>
+    </div>
   </div>
 </div>
