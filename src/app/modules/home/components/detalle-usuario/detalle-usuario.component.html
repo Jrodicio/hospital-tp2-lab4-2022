@@ -44,7 +44,7 @@
         <h5>Imagen de perfil:</h5>
         <div relativeLoader [loading]="cargandoImg1">
           <div>
-            <img [src]="usuario.imgURL" style="height: 300px;" (load)="isLoadedImg(1)">
+            <img [src]="usuario.imgURL" class="img-profile" (load)="isLoadedImg(1)">
           </div>
         </div>
       </ul>
@@ -54,7 +54,7 @@
         <h5>Imagen de perfil adicional:</h5>
         <div relativeLoader [loading]="cargandoImg2">
           <div>
-            <img [src]="usuario.imgURL2" style="height: 300px;" (load)="isLoadedImg(2)">
+            <img [src]="usuario.imgURL2" class="img-profile" (load)="isLoadedImg(2)">
           </div>
         </div>
       </ul>

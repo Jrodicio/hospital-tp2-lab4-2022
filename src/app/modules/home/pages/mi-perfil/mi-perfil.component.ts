@@ -12,13 +12,27 @@ import autoTable from 'jspdf-autotable';
 export class MiPerfilComponent implements OnInit {
 
   public usuario: any;
+  public misEspecialistas: any[] = [];
+  public especialistaSeleccionado: any;
+
   constructor(private firestoreService: FirestoreService,) { }
 
   ngOnInit(): void {
     this.firestoreService.getDocument('users',JSON.parse(localStorage.getItem('user')!).uid)
     .then(user => {
       this.usuario = user.data();
-    })
+      this.firestoreService.getDocuments('turnos').subscribe(turnos => {
+        turnos.filter(turno => turno['paciente'].uid === this.usuario.uid && turno['informeClinico']).forEach(turno => {
+          if(!this.misEspecialistas.find((especialista => turno['especialista'].uid === especialista.uid))){
+            this.misEspecialistas.push(turno['especialista']);
+          }
+        });
+      });
+    });
+  }
+
+  setEspecialista(especialista: any){
+    this.especialistaSeleccionado = especialista;
   }
 
   public savePDF(): void {

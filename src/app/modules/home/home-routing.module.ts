@@ -23,6 +23,7 @@ const routes: Routes = [
     {path:'mi-perfil', component:MiPerfilComponent},
     {path:'mis-pacientes',canActivate:[EspecialistaGuard],component:MisPacientesComponent},
 
+    {path:'graficos-estadisticas', canActivate:[AdminGuard], loadChildren: () => import('../reportes/reportes.module').then(m => m.ReportesModule)},
     {path:'solicitar-turno', loadChildren: () => import('../solicitud-turnos/solicitud-turnos.module').then(m => m.SolicitudTurnosModule)},
     {path:'turnos', loadChildren: () => import('../mis-turnos/mis-turnos.module').then(m => m.MisTurnosModule)},
     {path:'mis-turnos', loadChildren: () => import('../mis-turnos/mis-turnos.module').then(m => m.MisTurnosModule)},

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FirestoreService } from '../../../../providers/firestore.service';
 
 @Component({
@@ -6,23 +6,50 @@ import { FirestoreService } from '../../../../providers/firestore.service';
   templateUrl: './historial-clinico.component.html',
   styleUrls: ['./historial-clinico.component.scss']
 })
-export class HistorialClinicoComponent implements OnInit {
+export class HistorialClinicoComponent implements OnInit, OnChanges {
 
   @Input()
     usuario: any = undefined;
-    listaTurnos: any[] = [];
+  @Input()
+    especialista: any = undefined;
+    public listaTurnos: any[] = [];
+    public todosLosTurnos: any[] = [];
+
+    public userProfile: string = '';
   constructor(private firestoreService: FirestoreService) {
     this.firestoreService.getDocuments("turnos").subscribe(turnos => {
-      this.listaTurnos = turnos.filter((turno)=>turno['paciente'].uid === this.usuario.uid && turno['informeClinico']).sort((a, b) => b['fecha'] - a['fecha']);
+      this.todosLosTurnos = turnos.filter((turno)=>turno['paciente'].uid === this.usuario.uid && turno['informeClinico']).sort((a, b) => b['fecha'] - a['fecha']);
+      if(this.especialista){
+        this.listaTurnos = this.todosLosTurnos.filter((turno)=>turno.especialista.uid === this.especialista.uid);
+      }
+      else{
+        this.listaTurnos = this.todosLosTurnos;
+      }
     })
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem('userProfile')){
+      this.userProfile = localStorage.getItem('userProfile')!;
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(this.especialista){
+      this.listaTurnos = this.todosLosTurnos.filter((turno)=>turno.especialista.uid === this.especialista.uid);
+    }
+    else{
+      this.listaTurnos = this.todosLosTurnos;
+    }
   }
 
   getObservacionesAdicionales(turno: any){
     let observacionesAdicionales: string[];
     observacionesAdicionales = Object.keys(turno.informeClinico).filter(key => !['temperatura','peso','presion','altura'].includes(key))
     return observacionesAdicionales;
+  }
+
+  verResena(turno: any){
+    swal(turno.diagnostico, turno.comentario, "info");
   }
 }

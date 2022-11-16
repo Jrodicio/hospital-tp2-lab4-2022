@@ -10,7 +10,7 @@
               <img class="img" [src]="usuario.imgURL" [alt]="usuario.email">
               <h6 class="card-title">{{usuario.nombre}} {{usuario.apellido}} </h6>
               <small class="card-subtitle mb-2 text-muted">{{usuario.perfil}}</small><br>
-              <button class="btn btn-primary bottom-0" (click)="seleccionarUsuario(usuario)">Seleccionar</button>
+              <button type="button" class="btn btn-primary bottom-0" (click)="seleccionarUsuario(usuario)">Seleccionar</button>
             </li>
           </ul>
         </div>

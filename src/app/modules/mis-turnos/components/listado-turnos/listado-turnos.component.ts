@@ -98,6 +98,32 @@ export class ListadoTurnosComponent implements OnInit {
     swal(turno.diagnostico, turno.comentario, "info");
   }
 
+  valorarAtencion(turno: any){
+    let slider = document.createElement("input");
+    slider.type = "range";
+    slider.value = '0';
+
+    swal("¿Qué tan buena ha sido la atención recibida?", {
+      content: {element: slider},
+      icon: 'info',
+      title: 'Valoración',
+      buttons: ["Cancelar", "Aceptar"],
+    })
+    .then(() => {
+      turno.valoracion = parseInt(slider.value);
+      this.firestoreService.setDocument("turnos", turno.id, turno);
+      if(turno.valoracion < 30){
+        swal("¡Valoración registrada!","¡Lamentamos que su atención no haya sido la esperada, trabajaremos para solucionarlo!",'success');
+      }
+      else if(turno.valoracion < 70){
+        swal("¡Valoración registrada!","¡Estamos trabajando para mejorar la atención de nuestros especialistas!",'success');
+      }
+      else{
+        swal("¡Valoración registrada!","¡Gracias por elegirnos!",'success');
+      }
+    });
+  }
+
   completarEncuesta(turno: any){
     let encuesta: any = {};
 
@@ -128,6 +154,8 @@ export class ListadoTurnosComponent implements OnInit {
             .then(respuesta => {
               if(respuesta){
                 encuesta.pregunta3 = respuesta;
+                turno.encuesta = encuesta;
+                this.firestoreService.setDocument("turnos", turno.id, turno);
                 swal("¡Encuesta completada!","¡Muchas gracias por completar la encuesta!",'success');
               }
             })

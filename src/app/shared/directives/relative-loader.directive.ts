@@ -1,4 +1,4 @@
-import { Directive, OnInit, OnChanges, Input, ElementRef, Renderer2, SimpleChanges, OnDestroy } from '@angular/core';
+import { Directive, OnInit, OnChanges, Input, ElementRef, Renderer2, SimpleChanges } from '@angular/core';
 
 @Directive({
   selector: "[relativeLoader]",

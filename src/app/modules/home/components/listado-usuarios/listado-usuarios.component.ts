@@ -34,6 +34,6 @@ export class ListadoUsuariosComponent implements OnInit {
     this.usuarioSelected.emit('');
     setTimeout(()=>{
       this.usuarioSelected.emit(usuario);
-    },5)
+    },5);
   }
 }

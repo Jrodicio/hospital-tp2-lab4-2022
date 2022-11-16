@@ -6,9 +6,9 @@
         <div class="row">
           <ul class="list-group list-group-horizontal position-relative overflow-auto w-75">
             <li class="list-group-item" *ngFor="let paciente of listaPacientes">
-              <img class="img" [src]="paciente.imgURL" [alt]="paciente.email">
-              <h6 class="card-title">{{paciente.nombre}} {{paciente.apellido}} </h6>
-              <button class="btn btn-primary bottom-0" (click)="seleccionarPaciente(paciente)">Seleccionar</button>
+              <button class="btn btn-dark bottom-0 rounded-circle btn-image hover-shadow mask rgba-white-light" style="background-image: url({{paciente.imgURL}})" (click)="seleccionarPaciente(paciente)">
+                <h6 class="card-title bg-dark rounded">{{paciente.nombre}} {{paciente.apellido}} </h6>
+              </button>
             </li>
           </ul>
         </div>

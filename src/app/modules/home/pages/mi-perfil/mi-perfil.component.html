@@ -2,7 +2,19 @@
   <div *ngIf="usuario !== undefined">
     <app-detalle-usuario [usuario]="usuario"></app-detalle-usuario>
     <div *ngIf="usuario.perfil === 'Paciente'" class="text-center">
-      <app-historial-clinico id="htmlData" [usuario]="usuario"></app-historial-clinico>
+      <app-historial-clinico id="htmlData" [usuario]="usuario" [especialista]="especialistaSeleccionado"></app-historial-clinico>
+      <div class="col col-6">
+        <div class="card-deck my-3">
+          <div class="card text-center" *ngFor="let especialista of misEspecialistas" (click)="setEspecialista(especialista)">
+            <img class="card-img-top" [src]="especialista.imgURL">
+            <small class="card-title">Dr/a. {{especialista.apellido}}, {{especialista.nombre}}</small>
+          </div>
+          <div class="card text-center" (click)="setEspecialista(undefined)" *ngIf="especialistaSeleccionado !== undefined">
+            <img class="card-img-top" src="../../../../../assets/images/close.png">
+            <small class="card-title">Remover filtro</small>
+          </div>
+        </div>
+      </div>
       <button type="button" class="btn btn-success my-3" (click)="savePDF()">Descargar</button>
     </div>
   </div>

@@ -13,7 +13,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let turno of listadoTurnos; let i = index">
+    <tr *ngFor="let turno of listadoTurnos; let i = index" appRowHover>
       <th scope="row">{{i+1}}</th>
       <td>{{turno.especialidad}}</td>
       <td>{{turno.paciente.apellido}}, {{turno.paciente.nombre}}</td>
@@ -34,9 +34,9 @@
       </td>
       <td  *ngIf="perfilUsuario == 'Paciente'">
         <button type="button" class="btn btn-danger btn-sm" (click)="cancelar(turno)"   *ngIf="!['Realizado','Rechazado','Cancelado'].includes(turno.estado)">Cancelar</button>
-        <button type="button" class="btn btn-secondary btn-sm" (click)="verResena(turno)"  *ngIf="turno.comentario">Ver reseña</button>
-        <button type="button" class="btn btn-secondary btn-sm" (click)="completarEncuesta(turno)" *ngIf="turno.estado == 'Realizado' && turno.comentario" >Encuesta</button>
-        <button type="button" class="btn btn-secondary btn-sm" (click)="verResena(turno)"  *ngIf="turno.estado == 'Realizado'">Calificar atención</button>
+        <button type="button" class="btn btn-warning btn-sm" (click)="verResena(turno)"  *ngIf="turno.comentario">Ver reseña</button>
+        <button type="button" class="btn btn-primary btn-sm" (click)="completarEncuesta(turno)" *ngIf="turno.estado == 'Realizado' && turno.comentario && turno.encuesta === undefined" >Encuesta</button>
+        <button type="button" class="btn btn-success btn-sm" (click)="valorarAtencion(turno)"  *ngIf="turno.estado == 'Realizado' && turno.valoracion === undefined">Calificar atención</button>
       </td>
       <td  *ngIf="perfilUsuario == 'Administrador'">
         <button type="button" class="btn btn-danger btn-sm" (click)="cancelar(turno)" *ngIf="!['Realizado','Rechazado','Cancelado','Aceptado'].includes(turno.estado)">Cancelar</button>

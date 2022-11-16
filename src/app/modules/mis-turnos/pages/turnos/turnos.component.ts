@@ -12,6 +12,8 @@ export class TurnosComponent implements OnInit {
   public misEspecialistas: any[] = [];
   public misEspecialidades: string[] = [];
 
+  public cargando: boolean = true;
+
   public filtro: {administrador: boolean, especialista: any, paciente: any, especialidad: string} = {administrador: true, especialista: undefined, paciente: undefined, especialidad: ''};
   public filtroAdicional: string = '';
 
@@ -33,6 +35,9 @@ export class TurnosComponent implements OnInit {
           }
         });
       });
+      setTimeout(()=>{
+        this.cargando = false;
+      },1500);
     });
   }
 

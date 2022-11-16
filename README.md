@@ -7,29 +7,30 @@ Sistema de gestión de turnos para nuestra Clinica Online con el que podrán ges
 
 # :information_source: ¿Qué funcionalidades cumple actualmente el sistema?
 - Gestión de perfiles para pacientes, especialistas y administradores.
-- Configuración flexible de horarios para que los especialistas detallen cuando se encuentran trabajando.
+- Configuración flexible de horarios para que los especialistas detallen su disponibilidad horaria.
 - Metodología dinámica y amigable para la solicitud de turnos por parte de los pacientes.
 - Seguimiento de turnos por todos los usuarios.
-- Control de cartillas médicas: Podrás ver en cualquier momento lo cargado por un profesional en cada turno realizado.
+- Control de informes médicos: Como paciente, podrás ver en cualquier momento el informe médico cargado por los profesionales.
+- Informes: Como administrador, podrás visualizar distintos informes y gráficos dentro del sistema y bajarlos en PDF.
 
 
 # :information_source: ¿Cómo funciona la aplicación?
 
-El sistema presenta una interfaz similar para cada usuario, diferenciando los accesos acorde al perfil del mismo.
+La aplicación web permite gestionar sus turnos desde cualquier lugar siempre y cuando posea conexión a Internet.
 Se encuentra totalmente orientado a la facilidad de gestión y que cada perfil solo tenga acceso a aquellos sectores con los cuales pueda interactuar.
 
 # :information_source: Contenido de la aplicación
 
 ## Bienvenida
 
-Página inicial donde cualquier usuario no identificado podrá indicar si quiere identificarse o registrar una nueva cuenta con su correo.
+Página inicial donde cualquier usuario no identificado podrá indicar si quiere identificarse o registrarse con una nueva cuenta de usuario.
 
 ![Bienvenida](src/assets/readme/bienvenida.JPG "Página de bienvenida")
 
 ## Login de usuario
 
 Permitirá acceder al sistema con una cuenta de usuario previamente registrada, validada y, en el caso de los especialistas, aprobada por un administrador.
-Posee un contenedor con botones para faciliar el acceso con usuarios de distintos perfiles del lado derecho.
+Posee un contenedor flotante del lado derecho con botones para faciliar el acceso con usuarios de distintos perfiles del lado derecho en la fase de desarrollo.
 
 ![Login](src/assets/readme/login.JPG "Formulario de login")
 
@@ -49,6 +50,7 @@ Es la pantalla inicial donde cada usuario va a visualizar la barra de navegació
 ## Sección Usuarios
 
 Permitirá a los administradores visualizar a todos los usuarios registrados con sus datos, habilitar o deshabilitar a los especialistas y realizar el alta de nuevas cuentas de usuarios.
+Al seleccionar un paciente se descargará automáticamente un XLSX con todos los turnos que haya tomado, informando además el especialista.
 
 ![Usuarios](src/assets/readme/usuarios.gif "Sección´Usuarios")
 

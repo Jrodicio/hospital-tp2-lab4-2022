@@ -14,9 +14,7 @@ export class LoginComponent implements OnInit {
   public estaCargando: boolean = false;
   public loginForm: FormGroup;
   public errorLogin:{message: string, opacity: number};
-
-  public cargando: boolean = true;
-
+  
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -58,6 +56,8 @@ export class LoginComponent implements OnInit {
         this.firestoreService.getDocument('users', response.user.uid)
         .then(user => {
           if(response.user.emailVerified || user.get('perfil') === "Administrador"){
+            const logIngreso = {usuario: user.data(), ts: new Date().getTime()};
+            this.firestoreService.addData('logs', logIngreso);
             this.router.navigate(['/home']);
           }
           else{
@@ -114,7 +114,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onUsuarioSelected(correo: string){
+  onUsuarioLoginSelected(correo: string){
     this.fm['correo'].setValue(correo);
     this.fm['contrasena'].setValue('123456');
   }

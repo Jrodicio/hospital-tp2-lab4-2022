@@ -11,10 +11,11 @@
       <th scope="col">Presión</th>
       <th scope="col">Temperatura</th>
       <th scope="col">Datos adicionales</th>
+      <th scope="col" *ngIf="userProfile === 'Especialista'">Acciones</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let turno of listaTurnos; let i = index">
+    <tr *ngFor="let turno of listaTurnos; let i = index" appRowHover>
       <th scope="row">{{i+1}}</th>
       <td>{{turno.fecha | fechaFromNumber | fechaHora : 'fechaCompleta'}} {{turno.fecha | fechaFromNumber | fechaHora : 'horario'}}</td>
       <td>Dr/a. {{turno.especialista.apellido}}, {{turno.especialista.nombre}}</td>
@@ -28,6 +29,7 @@
           <span *ngIf="i!=0" style="display: none"> / </span><li>{{key}}: {{turno.informeClinico[key]}}</li>
         </ul>
       </td>
+      <td scope="col" *ngIf="userProfile === 'Especialista'"><button class="btn btn-success" *ngIf="turno.estado === 'Realizado'" (click)="verResena(turno)">Ver reseña</button></td>
     </tr>
   </tbody>
 </table>

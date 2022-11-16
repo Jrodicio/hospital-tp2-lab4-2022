@@ -1,0 +1,20 @@
+<div relativeLoader [loading]="cargando">
+  <div>
+    <table class="table" id='ingresoAlSistemaReport'>
+      <thead>
+        <tr>
+          <th scope="col">Usuario</th>
+          <th scope="col">Fecha ingreso</th>
+          <th scope="col">Hora ingreso</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let log of listadoLogs" appRowHover>
+          <td>{{log.usuario.email}}</td>
+          <td>{{log.ts | fechaFromNumber | fechaHora : 'fechaCompleta'}}</td>
+          <td>{{log.ts | fechaFromNumber | fechaHora : 'horario'}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -13,6 +13,9 @@
         <button type="button" class="btn" [ngClass]="checkRoute('/home/usuarios')? 'btn-primary' : 'btn-light'" routerLink="/home/usuarios" [hidden]="perfilUser != 'Administrador'">Usuarios</button>
       </li>
       <li class="nav-item">
+        <button type="button" class="btn" [ngClass]="checkRoute('/home/graficos-estadisticas')? 'btn-primary' : 'btn-light'" routerLink="/home/graficos-estadisticas" [hidden]="perfilUser != 'Administrador'">Gráficos & Estadísticas</button>
+      </li>
+      <li class="nav-item">
         <button type="button" class="btn" [ngClass]="checkRoute('/home/mis-turnos/'+perfilUser)? 'btn-primary' : 'btn-light'" routerLink="/home/mis-turnos/{{perfilUser}}" [hidden]="perfilUser != 'Especialista' && perfilUser != 'Paciente'">Mis turnos</button>
       </li>
       <li class="nav-item">

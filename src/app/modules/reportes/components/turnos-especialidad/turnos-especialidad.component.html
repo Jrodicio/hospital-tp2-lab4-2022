@@ -1,0 +1,14 @@
+<div relativeLoader [loading]="cargando">
+  <div>
+    <canvas id='turnosEspecialidadReport'
+            baseChart
+            [title]="title"
+            draggable="true"
+            [data]="barChartData"
+            [options]="barChartOptions"
+            [plugins]="barChartPlugins"
+            [legend]="barChartLegend"
+            [type]="'bar'">
+    </canvas>
+  </div>
+</div>

@@ -15,6 +15,7 @@ import { FiltrarTurnosPipe } from './pipes/filtrar-turnos.pipe';
 import { FechaFromNumberPipe } from './pipes/fecha-from-number.pipe';
 import { DefaultImageDirective } from './directives/default-image.directive';
 import { RelativeLoaderDirective } from './directives/relative-loader.directive';
+import { RowHoverDirective } from './directives/row-hover.directive';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { RelativeLoaderDirective } from './directives/relative-loader.directive'
     FechaFromNumberPipe,
     DefaultImageDirective,
     RelativeLoaderDirective,
+    RowHoverDirective,
   ],
   imports: [
     CommonModule,
@@ -55,6 +57,7 @@ import { RelativeLoaderDirective } from './directives/relative-loader.directive'
     FechaFromNumberPipe,
     DefaultImageDirective,
     RelativeLoaderDirective,
+    RowHoverDirective,
   ],
 })
 export class SharedModule { }

@@ -1,0 +1,44 @@
+<div class="container my-3">
+  <div class="botonera">
+
+    <button type="button" class="btn btn-dark btn-size" data-bs-toggle="collapse" data-bs-target="#ingresoAlSistema" aria-expanded="false" aria-controls="collapseExample" (click)="mostrarReporte('ingresoAlSistema',$event)">
+      Ingresos al sistema
+    </button>
+    <div class="collapse" id="ingresoAlSistema">
+      <app-ingreso-al-sistema *ngIf="reporteMostrar.includes('ingresoAlSistema')"></app-ingreso-al-sistema>
+      <button class="btn btn-success btn-size" (click)="descargarPDF('Logs ingresos al sistema','ingresoAlSistemaReport','tabla')">Descargar reporte</button>
+    </div>
+
+    <button type="button" class="btn btn-dark btn-size" data-bs-toggle="collapse" data-bs-target="#turnosEspecialidad" aria-expanded="false" aria-controls="collapseExample" (click)="mostrarReporte('turnosEspecialidad',$event)">
+      Cantidad de turnos por especialidad
+    </button>
+    <div class="collapse" id="turnosEspecialidad">
+      <app-turnos-especialidad *ngIf="reporteMostrar.includes('turnosEspecialidad')"></app-turnos-especialidad>
+      <button class="btn btn-success btn-size" (click)="descargarPDF('Turnos por especialidad','turnosEspecialidadReport','canvas')">Descargar reporte</button>
+    </div>
+
+    <button type="button" class="btn btn-dark btn-size" data-bs-toggle="collapse" data-bs-target="#turnosDia" aria-expanded="false" aria-controls="collapseExample" (click)="mostrarReporte('turnosDia',$event)">
+      Cantidad de turnos por día
+    </button>
+    <div class="collapse" id="turnosDia">
+      <app-turnos-dia *ngIf="reporteMostrar.includes('turnosDia')"></app-turnos-dia>
+      <button class="btn btn-success btn-size" (click)="descargarPDF('Turnos por día','turnosDiaReport','canvas')">Descargar reporte</button>
+    </div>
+
+    <button type="button" class="btn btn-dark btn-size" data-bs-toggle="collapse" data-bs-target="#turnosPorMedico" aria-expanded="false" aria-controls="collapseExample" (click)="mostrarReporte('turnosPorMedico',$event)">
+      Cantidad de turnos solicitado por médico en un lapso de tiempo
+    </button>
+    <div class="collapse" id="turnosPorMedico">
+      <app-turnos-por-medico *ngIf="reporteMostrar.includes('turnosPorMedico')"></app-turnos-por-medico>
+      <button class="btn btn-success btn-size" (click)="descargarPDF('Turnos solicitados por médico','turnosPorMedicoReport','canvas1:1')">Descargar reporte</button>
+    </div>
+
+    <button type="button" class="btn btn-dark btn-size" data-bs-toggle="collapse" data-bs-target="#turnosFinalizados" aria-expanded="false" aria-controls="collapseExample" (click)="mostrarReporte('turnosFinalizados',$event)">
+      Cantidad de turnos finalizados por médico en un lapso de tiempo
+    </button>
+    <div class="collapse" id="turnosFinalizados">
+      <app-turnos-finalizados-por-medico *ngIf="reporteMostrar.includes('turnosFinalizados')"></app-turnos-finalizados-por-medico>
+      <button class="btn btn-success btn-size" (click)="descargarPDF('Turnos finalizados por médico','turnosFinalizadosReport','canvas1:1')">Descargar reporte</button>
+    </div>
+  </div>
+</div>

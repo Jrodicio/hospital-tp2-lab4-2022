@@ -1,7 +1,13 @@
 
-img{
+.btn-image {
+  background-size: cover; //or cover
   width: 150px;
   height: 150px;
+}
+
+.btn-image:hover{
+  background-blend-mode: screen;
+  // opacity: 0.8;
 }
 
 .card-group{
@@ -14,23 +20,6 @@ img{
   overflow-x: auto;
 }
 
-.card{
-  width: 3000px;
-}
-
-.usuario{
-  padding: 10px;
-  margin: 5px;
-  display: inline-block;
-  width: 120px;
-  .img{
-    margin: auto;
-    width: 100px;
-    height: 100px;
-    border-image: round;
-  }
-}
-
 .row{
   margin: auto;
 }
@@ -39,6 +28,3 @@ img{
   margin: auto;
 }
 
-.filtro{
-  margin: 10px;
-}

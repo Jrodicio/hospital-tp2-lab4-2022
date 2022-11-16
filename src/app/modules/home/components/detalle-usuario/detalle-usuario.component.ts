@@ -57,4 +57,5 @@ export class DetalleUsuarioComponent implements OnInit, OnChanges {
       this.cargandoImg2 = false;
     }
   }
+
 }

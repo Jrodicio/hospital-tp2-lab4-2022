@@ -34,7 +34,6 @@ export class ListadoPacientesComponent implements OnInit {
     setTimeout(()=>{
       this.cargando=false;
     },2000);
-
   }
 
   seleccionarPaciente(paciente: any){

@@ -9,7 +9,7 @@ import { FirestoreService } from '../../../../providers/firestore.service';
 export class ListaUsuariosComponent implements OnInit {
 
   @Output()
-    usuarioSelected: EventEmitter<string> = new EventEmitter();
+    usuarioLoginSelected: EventEmitter<string> = new EventEmitter();
 
   public cargando: boolean = true;
   public listaUsuarios: any[] = [];
@@ -37,12 +37,10 @@ export class ListaUsuariosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("Ejecuta onInit")
   }
 
   seleccionarUsuario(usuario: any){
-    console.log("seleccionado el usuario:", usuario);
-    this.usuarioSelected.emit(usuario.correo);
+    this.usuarioLoginSelected.emit(usuario.correo);
   }
 
 }
