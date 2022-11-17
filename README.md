@@ -1,5 +1,5 @@
+#Clínica Online
 <p align="center">
-# Clínica Online
   <img src="https://github.com/Jrodicio/hospital-tp2-lab4-2022/blob/main/src/assets/images/logo.png" alt="Logo"/>
 </p>
 Sistema de gestión de turnos para nuestra Clinica Online con el que podrán gestionar e interactuar tanto profesionales prestadores de servicio como los pacientes que requieran cualquier tipo de atención brindado.
