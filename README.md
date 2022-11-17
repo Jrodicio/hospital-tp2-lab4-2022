@@ -1,4 +1,4 @@
-#Clínica Online
+# Clínica Online
 <p align="center">
   <img src="https://github.com/Jrodicio/hospital-tp2-lab4-2022/blob/main/src/assets/images/logo.png" alt="Logo"/>
 </p>
